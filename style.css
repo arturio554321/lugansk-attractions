@@ -1,0 +1,581 @@
+
+:root {
+    /* Светлая тема */
+    --bg-color-light: #e0e0e0; /* Цвет фона светлой темы */
+    --text-color-light: #2c3e50; /* Цвет текста светлой темы */
+    --hover-bg-light: #e8f4fd; /* Цвет фона при наведении в светлой теме */
+    --hover-text-light: #2980b9; /* Цвет текста при наведении в светлой теме */
+
+    /* Тёмная тема */
+    --bg-color-dark: #1a1a2e; /* Цвет фона темной темы */
+    --text-color-dark: #e0e0ff; /* Цвет текста темной темы */
+    --hover-bg-dark: #3a3a63; /* Цвет фона при наведении в темной теме */
+    --hover-text-dark: #8ab4f8; /* Цвет текста при наведении в темной теме */
+}
+
+/* Обнуляем отступы и размеры блоков */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: sans-serif;
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+/* Светлая тема (по умолчанию) */
+body.light-theme {
+    --bg-color: var(--bg-color-light);
+    --text-color: var(--text-color-light);
+    --hover-bg: var(--hover-bg-light);
+    --hover-text: var(--hover-text-light);
+}
+
+/* Тёмная тема */
+body.dark-theme {
+    --bg-color: var(--bg-color-dark);
+    --text-color: var(--text-color-dark);
+    --hover-bg: var(--hover-bg-dark);
+    --hover-text: var(--hover-text-dark);
+}
+
+body, #nav, #hamburgerBtn, .nav-list, a {    
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.nav {
+    padding: 1rem;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    height: 80px;
+    justify-content: space-between;
+    border-bottom: 1px solid #bdc3c7;
+}
+
+.nav .title {
+    font-size: 32px;
+    text-align: center;
+    font-style: italic;
+    text-transform: uppercase;
+    padding: 20px;
+}
+
+.nav-list {
+    list-style-type: none;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 26px;
+    font-style: oblique;
+}
+
+.nav-list li {
+    width: 100%;
+    height: 100%;
+}
+
+.nav-list a {
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    padding: 10px;
+}
+
+.nav-list a:hover,
+.nav-list a:focus {
+    color: var(--hover-text);
+    background-color: var(--hover-bg);
+    border-radius: 8px;
+}
+
+.theme {
+    padding: 10px 25px;
+    background: none;
+    border: none;
+    font-size: 26px;
+    border-radius: 35px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme:hover,
+.theme:focus {
+    transform: translateY(-2px);
+}
+
+.hamburger {
+    order: 1;
+    font-size: 32px;
+    border: none;
+    padding: 10px 25px;
+    font-weight: bold;
+    margin: 0 auto;
+    border-radius: 25px;
+    display: none;
+    position: relative;
+    cursor: pointer;
+    background: transparent;
+}
+
+.hamburger::before {
+    content: "☰";
+    display: inline-block;
+    transition: all 0.3s ease-in-out;
+    transform: rotate(0deg);
+}
+
+.hamburger.active::before {
+    content: "×";
+    transform: rotate(180deg);
+}
+
+.main-content {
+    flex: 1 0 auto;
+    position: relative;
+    padding-top: 80px;
+}
+
+.info-city {
+    font-size: 24px;
+    margin: 20px;
+}
+
+.info-city h2 {
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.city-logo,
+.city-landmark {
+    float: left;
+    margin: 20px 20px 0;
+    text-align: center;
+}
+
+.city-logo img,
+.city-landmark img {
+    max-width: 100%;
+}
+
+.city-logo img {
+    width: 350px;
+    height: 350px;
+}
+
+.city-landmark img {
+    width: 800px;
+}
+
+.city-logo img,
+.city-landmark img {
+    margin-right: 20px;
+}
+
+.city-logo figcaption,
+.city-landmark figcaption {
+    margin-top: 10px;
+    font-style: italic;
+    font-size: 16px;
+}
+
+.city-history,
+.city-economy {
+    margin: 30px 0;
+}
+
+.city-history h3,
+.city-economy h2 {
+    color: #34495e;
+}
+
+.city-history ol,
+.city-economy ul {
+    margin-left: 35px;
+}
+
+span {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card-attraction {
+    border: 2px solid #3498db;
+    border-radius: 10px;
+    padding: 10px;
+    transition: box-shadow 0.3s ease;
+}
+
+.card-attraction:hover {
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.25);
+}
+
+.card-attraction img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.attractions h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 26px;
+}
+
+.map_link {
+    display: inline-block;
+    margin-top: 15px;
+    text-decoration: none;
+    font-size: 24px;
+}
+
+.map_link:hover {
+    text-decoration: underline;
+    color: var(--hover-text);
+}
+
+.footer {
+    width: 100%;
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+    border-top: 1px solid #bdc3c7;
+}
+
+.social-icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.social-icons a {
+    font-size: 36px;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 0 10px;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover,
+.social-icons a:focus {
+    color: var(--hover-text);
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.contact a {
+    text-decoration: none;
+    cursor: pointer;
+    margin: 5px 10px;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.contact a:hover,
+.contact a:focus {
+    color: var(--hover-text);
+}
+
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Медиа-запросы для адаптивности */
+/* Для экранов до 768 px (мобильные + планшеты) */
+@media (max-width: 768px) {
+    .nav .title {
+        font-size: 18px;
+        padding: 0;
+    }
+    
+    .hamburger {
+        display: block;
+    }
+
+    .nav-list {
+        position: fixed;
+        top: 80px;
+        transform: translateX(-120%);
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        flex-direction: column;
+        transition: transform 0.3s ease;
+        font-size: 18px;
+        gap: 10px;
+        text-align: center;
+    }
+
+    #nav.active .nav-list {
+        transform: translateX(-5%);
+    }
+
+    .theme {
+        padding: 5px 15px;
+        margin: 10px;
+        font-size: 20px;
+    }
+
+    .info-city {
+        font-size: 16px;
+        margin: 15px;
+    }
+
+    .city-logo,
+    .city-landmark {
+        float: none;
+        margin: 20px auto;
+        text-align: center;
+    }
+    
+    .city-logo img {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .city-landmark img {
+         width: 450px;
+    }
+
+    .city-logo figcaption,
+    .city-landmark figcaption {
+        font-size: 14px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        padding: 10px;
+    }
+
+    .card-attraction {
+        border: 1px solid #3498db;
+        border-radius: 5px;
+        padding: 8px;
+    }
+
+    .card-attraction img {
+        border-radius: 5px;
+    }
+
+    .attractions h2 {
+        font-size: 18px;
+    }
+
+    .map_link {
+        font-size: 18px;
+    }
+
+    .footer {
+        flex-direction: column;
+        gap: 5px;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .social-icons a {
+        font-size: 28px;
+    }
+    
+    .contact {
+        text-align: center;
+    }
+}
+
+/* Для экранов от 769 до 1023 px (планшеты в альбомной ориентации) */
+@media (min-width: 769px) and (max-width: 1023px) {
+    .nav .title {
+        font-size: 22px;
+        text-align: left;
+        padding: 0;
+    }
+
+    .nav-list {
+        font-size: 18px;
+        margin: 0 5px;
+        gap: 10px;
+    }
+
+    .theme {
+        margin-top: 10px;
+        font-size: 22px;
+    }
+    
+    .info-city {
+        font-size: 18px;
+        margin: 10px 15px;
+    }
+
+    .city-logo,
+    .city-landmark {
+        float: none;
+        margin: 5px 10px 0;
+}
+
+    .city-logo img {
+        width: 250px;
+        height: 250px;
+}
+
+    .city-landmark img {
+        width: 550px;
+}
+
+    .map_link {
+        font-size: 20px;
+    }
+
+    .social-icons a {
+        font-size: 32px;
+    }
+
+    .contact {
+        margin: 5px;
+        white-space: nowrap;
+    }
+}
+
+/* Для экранов от 1024 до 1279 px (небольшие десктопы) */
+@media (min-width: 1024px) and (max-width: 1279px) {
+    .nav .title {
+        font-size: 24px;
+        padding: 5px;
+    }
+
+    .nav-list {
+        font-size: 20px;
+        gap: 1rem;
+    }
+
+    .theme {
+        margin-top: 15px;
+        font-size: 24px;
+    }
+
+    .info-city {
+        font-size: 20px;
+        margin: 15px;
+    }
+    
+    .city-logo img {
+        width: 300px;
+        height: 300px;
+    }
+    
+    .city-landmark img {
+        width: 650px;
+    }
+
+    .card-attraction {
+        border: 3px solid #3498db;
+        border-radius: 15px;
+    }
+
+    .map_link {
+        font-size: 22px;
+    }
+
+    .social-icons a {
+        font-size: 34px;
+    }
+}
+
+/* Для экранов от 1280 до 1439 px (стандартные десктопы) */
+@media (min-width: 1280px) and (max-width: 1439px) {
+    .nav .title {
+        font-size: 28px;
+    }
+
+    .nav-list {
+        font-size: 24px;
+    }
+
+    .theme {
+        margin-top: 15px;
+    }
+
+    .info-city {
+        font-size: 22px;
+        margin: 20px;
+    }
+
+    .city-landmark img {
+        width: 730px;
+    }
+    
+    .card-attraction {
+        border: 4px solid #3498db;
+        border-radius: 20px;
+    }
+}
+
+/* Для больших экранов (1440px и выше) */
+@media (min-width: 1440px) {        
+    .theme {
+        font-size: 28px;
+        padding: 15px 30px;
+        margin-top: 15px;
+    }
+
+    .attractions h2 {
+        font-size: 30px;
+    }
+
+    .info-city {
+        font-size: 24px;
+    }
+
+    .city-logo,
+    .city-landmark {
+        margin: 40px 30px 0;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    }
+
+    .card-attraction {
+        border: 5px solid #3498db;
+        border-radius: 25px;
+    }
+
+    .footer {
+        padding: 20px 30px;
+    }
+}
