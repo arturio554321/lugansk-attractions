@@ -1,0 +1,23 @@
+{
+  "name": "lugansk-attractions",
+  "version": "1.0.0",
+  "description": "Достопримечательности города Луганска",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arturio554321/lugansk-attractions.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arturio554321/lugansk-attractions/issues"
+  },
+  "homepage": "https://github.com/arturio554321/lugansk-attractions#readme",
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
